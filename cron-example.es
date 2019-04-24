@@ -37,6 +37,9 @@ jobs.push({
   }
 });
 
-cron.start();
+cron.start(); // At this point the two original jobs will get called.
 cron.update(jobs); // At this point the original jobs are gone and only 'Once every second' exists.
-cron.stop();
+cron.stop(); // At this point no jobs will get called.
+
+// Uncertain whether this is allow in js but you get the idea, this could be called in main.js destroy.
+delete cron; // At this point whether cron is stopped or started should not matter, no jobs should be called.
